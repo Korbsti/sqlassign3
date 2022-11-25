@@ -1,6 +1,10 @@
 # sqlassign3
 https://docs.google.com/document/d/1ADpf7svIE0ARQLutu6PLrgNZXcZAPeZKUFJWqggzkXo/edit?usp=sharing <-- GROUP REPORT
+
+
 Assignment 3 – Relational Databases
+
+
 This assignment requires you to apply your understanding of table relationships including Primary
 and Foreign Keys and Cardinality (i.e. relationships between tables, such as one-to-one, many-to-
 one and one-to-many). You will also combine your knowledge of INSERT, SUBSTR,
