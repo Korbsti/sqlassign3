@@ -1,4 +1,3 @@
-
 # 
 # 
 # 
@@ -20,8 +19,7 @@ CREATE TABLE personal_information (
 );
 
 CREATE TABLE donation_information (
-    userid INT,
-	donation_date DATE,
+	FOREIGN KEY (userid) REFERENCES personal_information(userid),	donation_date DATE,
     amount DECIMAL(4, 2),
     notes VARCHAR(100),
     keep_confidential BOOL
@@ -35,31 +33,59 @@ CREATE TABLE fundraising  (
 );
 
 CREATE TABLE payment_information (
-    userid INT,
-	credit_card_type VARCHAR(15),
+	FOREIGN KEY (userid) REFERENCES personal_information(userid),	credit_card_type VARCHAR(15),
     card_number VARCHAR(20),
     expiry_date DATE,
     cvv INT(3)
 );
 
 CREATE TABLE contact_information(
-    userid INT,
-	email VARCHAR(40),
+	FOREIGN KEY (userid) REFERENCES personal_information(userid),	email VARCHAR(40),
     phone VARCHAR(13),
     mailing_signup BOOL
 );
 
 CREATE TABLE donors_campaigns(
-	userid INT,
-	campaign_id INT,
+	FOREIGN KEY (userid) REFERENCES personal_information(userid),
+	FOREIGN KEY (campaign_id) REFERENCES fundraiser(campaign_id),
     allocation INT(3)
 );
 
-INSERT INTO fundraising VALUES ('Keep It Wild' ,  'Habitat conservation in Canada’s boreal');
-INSERT INTO fundraising VALUES ('Nerdy about Nature' ,  'Citizen science training and outreach program');
-INSERT INTO fundraising VALUES ('Ripples of hope' ,  'Stream restoration');
-INSERT INTO fundraising VALUES ('Seeds of change' ,  'Tree planting');
+INSERT INTO fundraising VALUES
+	('Keep It Wild' ,  'Habitat conservation in Canada’s boreal'),
+	('Nerdy about Nature' ,  'Citizen science training and outreach program'),
+	('Ripples of hope' ,  'Stream restoration'),
+	('Seeds of change' ,  'Tree planting');
 
-INSERT INTO personal_information VALUES ('Rosa','Ruffner','3846 St. Paul Street','St Catharines','ON','L2S 3A1');
-INSERT INTO personal_information VALUES ('Rosa','Ruffner','3846 St. Paul Street','St Catharines','ON','L2S 3A1');
-INSERT INTO personal_information VALUES ('Rosa','Ruffner','3846 St. Paul Street','St Catharines','ON','L2S 3A1');
+INSERT INTO personal_information VALUES
+	('Rosa','Ruffner','3846 St. Paul Street','St Catharines','ON','L2S 3A1'),
+	('Jack','Bradbury','867 rue des Églises Est', 'Ste Cecile De Masham','QC','J0X 2W0'),
+	('Eleanore', 'Sanders', '1145 47th Avenue', 'Grassland', 'AB', 'T0A 1V0');
+
+
+INSERT INTO payment_information VALUES
+	('VISA', '4532462633596383', '01/2025', 672),
+	('MasterCard', '5477635202058042', '03/2024', 622),
+	('VISA', '4916449184987034', '08/2024', 373);
+
+INSERT INTO donation_information VALUES
+		('2022-08-14', 1000.00,'Please see ensure to apply this donation towards the campaigns as indicated below. Thanks! - Rosa',1),
+		('2022-07-01', 200.20, 'Keep up the good work!!', 0),
+        ('2022-09-15', 50.00, '' ,0);
+
+INSERT INTO contact_information VALUES 
+	('RoseMRuffner@pookmail.com','905-401-7824', false),
+	('JackABradbury@spambob.com','819-456-6014', true),
+	('EleanoreRSanders@spambob.com', '780-525-6148',true);
+    
+        
+INSERT INTO donors_campaigns VALUES
+	(50),
+    (50), 
+    (100),
+    (25),
+    (25),
+    (25),
+    (25);
+    
+
